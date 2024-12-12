@@ -1,0 +1,15 @@
+.NavBar {
+	display: flex;
+	gap: 15px;
+	padding: 5px;
+	background-color: #f0f0f0;
+}
+
+.NavBar a {
+	text-decoration: none;
+	color: #333;
+}
+
+.NavBar a.active {
+	font-weight: bold;
+}

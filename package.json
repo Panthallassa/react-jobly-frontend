@@ -1,0 +1,41 @@
+{
+	"name": "frontend",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"lint": "eslint .",
+		"preview": "vite preview",
+		"test": "vitest"
+	},
+	"dependencies": {
+		"axios": "^1.7.7",
+		"jwt-decode": "^4.0.0",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"react-router-dom": "^6.28.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.26.0",
+		"@babel/plugin-transform-runtime": "^7.25.9",
+		"@babel/preset-env": "^7.26.0",
+		"@babel/preset-react": "^7.25.9",
+		"@babel/runtime": "^7.26.0",
+		"@eslint/js": "^9.13.0",
+		"@testing-library/react": "^16.0.1",
+		"@types/react": "^18.3.12",
+		"@types/react-dom": "^18.3.1",
+		"@vitejs/plugin-react": "^4.3.3",
+		"dotenv": "^16.4.6",
+		"eslint": "^9.13.0",
+		"eslint-plugin-react": "^7.37.2",
+		"eslint-plugin-react-hooks": "^5.0.0",
+		"eslint-plugin-react-refresh": "^0.4.14",
+		"globals": "^15.11.0",
+		"jsdom": "^21.1.2",
+		"vite": "^5.4.10",
+		"vitest": "^2.1.8"
+	}
+}
