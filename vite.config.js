@@ -1,30 +1,25 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { configDefaults } from "vitest/config";
 
-// https://vite.dev/config/
-export default defineConfig(({ mode }) => {
-	return {
-		define: {
-			// Explicitly set NODE_ENV to match the build mode
-			"process.env.NODE_ENV": JSON.stringify(
-				mode === "production" ? "production" : "development"
-			),
-		},
-		optimizeDeps: {
-			include: ["jwt-decode"],
-		},
-		plugins: [react()],
-		server: {
-			proxy: {
-				"/api": "http://localhost:3001", // Proxy backend API requests
+export default defineConfig({
+	plugins: [react()],
+	define: {
+		// Use REACT_APP_BASE_URL from the environment or default to localhost
+		"process.env.BASE_URL": JSON.stringify(
+			process.env.REACT_APP_BASE_URL ||
+				"http://localhost:3001"
+		),
+	},
+	server: {
+		// Proxy API calls to the backend
+		proxy: {
+			"/api": {
+				target:
+					process.env.REACT_APP_BASE_URL ||
+					"http://localhost:3001",
+				changeOrigin: true, // Ensure the origin header matches the target
+				rewrite: (path) => path.replace(/^\/api/, ""),
 			},
 		},
-		test: {
-			globals: true,
-			environment: "jsdom", // Sets the test environment to jsdom
-			css: true, // Ensures that CSS imports don’t break tests
-			exclude: [...configDefaults.exclude],
-		},
-	};
+	},
 });
