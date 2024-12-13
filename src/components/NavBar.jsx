@@ -16,16 +16,16 @@ function NavBar({ currentUser, logout }) {
 		<nav className='NavBar'>
 			{currentUser ? (
 				<>
-					<NavLink exact to='/' activeClassName='active'>
+					<NavLink exact to='/' activeclassname='active'>
 						Home
 					</NavLink>
-					<NavLink to='/companies' activeClassName='active'>
+					<NavLink to='/companies' activeclassname='active'>
 						Companies
 					</NavLink>
-					<NavLink to='/jobs' activeClassName='active'>
+					<NavLink to='/jobs' activeclassname='active'>
 						Jobs
 					</NavLink>
-					<NavLink to='/profile' activeClassName='active'>
+					<NavLink to='/profile' activeclassname='active'>
 						Profile
 					</NavLink>
 					<button
@@ -38,10 +38,10 @@ function NavBar({ currentUser, logout }) {
 				</>
 			) : (
 				<>
-					<NavLink to='/login' activeClassName='active'>
+					<NavLink to='/login' activeclassname='active'>
 						Login
 					</NavLink>
-					<NavLink to='/signup' activeClassName='active'>
+					<NavLink to='/signup' activeclassname='active'>
 						Sign Up
 					</NavLink>
 				</>
