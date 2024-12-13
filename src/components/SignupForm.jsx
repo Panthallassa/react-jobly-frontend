@@ -22,7 +22,6 @@ function SignupForm({ signup }) {
 	return (
 		<form onSubmit={handleSubmit}>
 			<input
-				autocomplete='new-username'
 				name='username'
 				value={formData.username}
 				onChange={handleChange}
@@ -31,7 +30,6 @@ function SignupForm({ signup }) {
 				autoComplete='new-username'
 			/>
 			<input
-				autocomplete='new-password'
 				name='password'
 				type='password'
 				value={formData.password}

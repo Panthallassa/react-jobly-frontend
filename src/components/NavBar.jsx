@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import "./NavBar.css";
 
 /**
  * Navigation bar component that displays different options depending on the user's authentication status.
@@ -12,29 +13,37 @@ import { Link } from "react-router-dom";
  */
 function NavBar({ currentUser, logout }) {
 	return (
-		<nav>
+		<nav className='NavBar'>
 			{currentUser ? (
 				<>
-					{" "}
-					<Link to='/'>Home</Link>
-					<Link to='/companies'>Companies</Link>{" "}
-					{/* Link to Companies */}
-					<Link to='/jobs'>Jobs</Link> {/* Link to Jobs */}
-					<Link to='/profile'>Profile</Link>{" "}
-					{/* Profile link */}
+					<NavLink exact to='/' activeClassName='active'>
+						Home
+					</NavLink>
+					<NavLink to='/companies' activeClassName='active'>
+						Companies
+					</NavLink>
+					<NavLink to='/jobs' activeClassName='active'>
+						Jobs
+					</NavLink>
+					<NavLink to='/profile' activeClassName='active'>
+						Profile
+					</NavLink>
 					<button
+						className='logout-button'
 						data-testid='logout-button'
 						onClick={logout}
 					>
 						Logout
-					</button>{" "}
-					{/* Logout button */}
+					</button>
 				</>
 			) : (
 				<>
-					<Link to='/login'>Login</Link> {/* Login link */}
-					<Link to='/signup'>Sign Up</Link>{" "}
-					{/* Signup link */}
+					<NavLink to='/login' activeClassName='active'>
+						Login
+					</NavLink>
+					<NavLink to='/signup' activeClassName='active'>
+						Sign Up
+					</NavLink>
 				</>
 			)}
 		</nav>
