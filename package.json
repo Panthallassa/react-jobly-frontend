@@ -4,12 +4,14 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
+		"start": "vite",
 		"dev": "vite",
 		"build": "vite build",
 		"serve": "vite preview",
 		"lint": "eslint .",
 		"preview": "vite preview",
-		"test": "vitest"
+		"test": "vitest",
+		"postinstall": "ls -l node_modules/.bin"
 	},
 	"dependencies": {
 		"axios": "^1.7.7",
