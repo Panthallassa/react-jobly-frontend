@@ -1,6 +1,5 @@
-import axios from "axios";
 import { decodeJWT } from "./src/utils/jwtUtils";
-import BASE_URL from "./src/config";
+import api from "./src/config"; // Import the Axios instance from config.jsx
 
 /** API Class.
  *
@@ -26,7 +25,6 @@ class JoblyApi {
 		data = {},
 		method = "get"
 	) {
-		const url = `${BASE_URL}/${endpoint}`;
 		const headers = JoblyApi.token
 			? { Authorization: `Bearer ${JoblyApi.token}` }
 			: {};
@@ -34,8 +32,8 @@ class JoblyApi {
 		const params = method === "get" ? data : {};
 
 		try {
-			const response = await axios({
-				url,
+			const response = await api({
+				url: endpoint,
 				method,
 				data,
 				params,
@@ -44,7 +42,9 @@ class JoblyApi {
 			return response.data;
 		} catch (err) {
 			console.error("API Error:", err.response);
-			let message = err.response.data.error.message;
+			let message =
+				err.response?.data?.error?.message ||
+				"An error occurred.";
 			throw Array.isArray(message) ? message : [message];
 		}
 	}
@@ -64,28 +64,21 @@ class JoblyApi {
 	/** Get a list of all companies, with optional search filters. */
 	static async getCompanies(name = "") {
 		const res = await this.request("api/companies", {
-			params: name ? { name } : {},
+			name,
 		});
 		return res.companies;
 	}
 
 	/** Get a list of all jobs, with optional search filters. */
 	static async getJobs(name = "") {
-		const res = await this.request("api/jobs", {
-			params: name ? { name } : {},
-		});
+		const res = await this.request("api/jobs", { name });
 		return res.jobs;
 	}
 
 	/** Get a job */
 	static async getJob(id) {
-		try {
-			const res = await axios.get(`api/jobs/${id}`);
-			return res.data.job; // Assuming API returns a job object
-		} catch (err) {
-			console.error("Error fetching job:", err);
-			throw err; // Re-throw to handle errors in the calling code
-		}
+		const res = await this.request(`api/jobs/${id}`);
+		return res.job;
 	}
 
 	/** Get details on a user by username. */
@@ -127,32 +120,22 @@ class JoblyApi {
 
 	/** Save user profile updates. */
 	static async saveProfile(username, data) {
-		try {
-			const res = await this.request(
-				`api/users/${username}`,
-				data,
-				"patch"
-			);
-			return res.user;
-		} catch (err) {
-			console.error("API Error updating profile", err);
-		}
+		const res = await this.request(
+			`api/users/${username}`,
+			data,
+			"patch"
+		);
+		return res.user;
 	}
 
 	/** Apply to a job. */
 	static async applyToJob(username, jobId) {
-		if (!this.token)
-			throw new Error("Unauthorized: No token found.");
-		try {
-			const res = await this.request(
-				`api/users/${username}/jobs/${jobId}`,
-				{},
-				"post"
-			);
-			return res.applied;
-		} catch (err) {
-			console.error("Error applying to job:", err);
-		}
+		const res = await this.request(
+			`api/users/${username}/jobs/${jobId}`,
+			{},
+			"post"
+		);
+		return res.applied;
 	}
 }
 

@@ -1,4 +1,10 @@
-const BASE_URL =
-	import.meta.env.VITE_BASE_URL || "http://localhost:3001"; // Default to test or dev URL
+import axios from "axios";
 
-export default BASE_URL;
+// Create an Axios instance with the correct base URL
+const instance = axios.create({
+	baseURL:
+		process.env.REACT_APP_BASE_URL ||
+		"http://localhost:3001", // Use deployment or local URL
+});
+
+export default instance;
