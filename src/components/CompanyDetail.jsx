@@ -12,6 +12,7 @@ function CompanyDetailPage({
 	handleJobApplication,
 	appliedJobIds = [], // Default to empty array
 	initialCompany,
+	username,
 }) {
 	const { handle } = useParams(); // Get the handle from the URL
 	const [company, setCompany] = useState(
@@ -56,6 +57,7 @@ function CompanyDetailPage({
 								equity={job.equity}
 								company={company}
 								applied={appliedJobIds.includes(job.id)} // Check if the job is already applied for
+								username={username}
 								handleApply={handleJobApplication} // Pass application handler
 								hideCompanyName={true}
 							/>

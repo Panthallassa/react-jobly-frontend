@@ -21,8 +21,6 @@ function JobCard({
 	const [hasApplied, setHasApplied] = useState(applied);
 
 	const handleApply = async () => {
-		console.log("Current user:", username);
-
 		if (!username) {
 			console.error("Cannot apply: username is missing.");
 			return;

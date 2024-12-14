@@ -70,6 +70,7 @@ function AppRoutes({
 					<PrivateRoute currentUser={currentUser}>
 						<CompanyDetail
 							currentUser={currentUser}
+							username={currentUser?.username}
 							handleJobApplication={handleJobApplication}
 						/>
 					</PrivateRoute>
