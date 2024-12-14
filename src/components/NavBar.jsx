@@ -16,7 +16,7 @@ function NavBar({ currentUser, logout }) {
 		<nav className='NavBar'>
 			{currentUser ? (
 				<>
-					<NavLink exact to='/' activeclassname='active'>
+					<NavLink to='/' activeclassname='active'>
 						Home
 					</NavLink>
 					<NavLink to='/companies' activeclassname='active'>

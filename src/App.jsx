@@ -54,7 +54,7 @@ function App() {
 				username,
 				password,
 			});
-			console.log("Token after login:", token);
+
 			setToken(token);
 			JoblyApi.token = token;
 			const user = await JoblyApi.getUser(username);
