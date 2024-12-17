@@ -21,7 +21,7 @@ function Signup() {
 			// Make API call to your backend to register the user
 			// Make API call to your backend to register the user
 			const response = await api.post(
-				"/auth/register", // Use relative path with your API instance
+				"users/auth/register", // Use relative path with your API instance
 				formData
 			);
 
