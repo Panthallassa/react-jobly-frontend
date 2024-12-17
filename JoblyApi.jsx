@@ -55,9 +55,7 @@ class JoblyApi {
 
 	/** Get details on a company by handle. */
 	static async getCompany(handle) {
-		const res = await this.request(
-			`api/companies/${handle}`
-		);
+		const res = await this.request(`companies/${handle}`);
 		return res.company;
 	}
 
@@ -71,19 +69,19 @@ class JoblyApi {
 
 	/** Get a list of all jobs, with optional search filters. */
 	static async getJobs(title = "") {
-		const res = await this.request("api/jobs", { title });
+		const res = await this.request("jobs", { title });
 		return res.jobs;
 	}
 
 	/** Get a job */
 	static async getJob(id) {
-		const res = await this.request(`api/jobs/${id}`);
+		const res = await this.request(`jobs/${id}`);
 		return res.job;
 	}
 
 	/** Get details on a user by username. */
 	static async getUser(username) {
-		const res = await this.request(`api/users/${username}`);
+		const res = await this.request(`users/${username}`);
 		return res.user;
 	}
 
@@ -94,14 +92,14 @@ class JoblyApi {
 				"No token available for authentication."
 			);
 		const { username } = decodeJWT(this.token);
-		const res = await this.request(`api/users/${username}`);
+		const res = await this.request(`users/${username}`);
 		return res.user;
 	}
 
 	/** Register a new user. */
 	static async register(data) {
 		const res = await this.request(
-			"api/auth/register",
+			"auth/register",
 			data,
 			"post"
 		);
@@ -111,7 +109,7 @@ class JoblyApi {
 	/** Log in an existing user. */
 	static async login(data) {
 		const res = await this.request(
-			"api/auth/token",
+			"auth/token",
 			data,
 			"post"
 		);
@@ -121,7 +119,7 @@ class JoblyApi {
 	/** Save user profile updates. */
 	static async saveProfile(username, data) {
 		const res = await this.request(
-			`api/users/${username}`,
+			`users/${username}`,
 			data,
 			"patch"
 		);
@@ -131,7 +129,7 @@ class JoblyApi {
 	/** Apply to a job. */
 	static async applyToJob(username, jobId) {
 		const res = await this.request(
-			`api/users/${username}/jobs/${jobId}`,
+			`users/${username}/jobs/${jobId}`,
 			{},
 			"post"
 		);
