@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import SignupForm from "./SignupForm";
 import axios from "axios";
+import api from "../config";
 
 /**
  * Signup Component
@@ -18,8 +19,9 @@ function Signup() {
 	const handleSignup = async (formData) => {
 		try {
 			// Make API call to your backend to register the user
-			const response = await axios.post(
-				"http://localhost:3001/api/users/auth/register", // Update with your actual endpoint
+			// Make API call to your backend to register the user
+			const response = await api.post(
+				"/auth/register", // Use relative path with your API instance
 				formData
 			);
 
