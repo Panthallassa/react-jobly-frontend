@@ -18,7 +18,6 @@ export default defineConfig({
 					process.env.REACT_APP_BASE_URL ||
 					"http://localhost:3001",
 				changeOrigin: true, // Ensure the origin header matches the target
-				rewrite: (path) => path.replace(/^\/api/, ""),
 			},
 		},
 	},
