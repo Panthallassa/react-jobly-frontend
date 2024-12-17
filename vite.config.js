@@ -6,8 +6,7 @@ export default defineConfig({
 	define: {
 		// Use VITE_BASE_URL from the environment or default to localhost
 		"process.env.BASE_URL": JSON.stringify(
-			import.meta.env.VITE_BASE_URL ||
-				"http://localhost:3001"
+			process.env.VITE_BASE_URL || "http://localhost:3001"
 		),
 	},
 	server: {
@@ -15,7 +14,7 @@ export default defineConfig({
 		proxy: {
 			"/": {
 				target:
-					import.meta.env.VITE_BASE_URL ||
+					process.env.VITE_BASE_URL ||
 					"http://localhost:3001",
 				changeOrigin: true, // Ensure the origin header matches the target
 			},
